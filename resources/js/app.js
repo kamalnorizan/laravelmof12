@@ -1,15 +1,22 @@
-import 'remixicon/fonts/remixicon.css';
-import 'node-waves/dist/waves.css';
-import 'perfect-scrollbar/css/perfect-scrollbar.css';
+
+import $ from 'jquery';
+import Hammer from 'hammerjs';
+import Waves from 'node-waves';
+import PerfectScrollbar from 'perfect-scrollbar';
+import Swal from 'sweetalert2';
+
+window.$ = $;
+window.jQuery = $;
+window.Hammer = Hammer;
+window.PerfectScrollbar = PerfectScrollbar;
+window.Swal = Swal;
+
 import './js/bootstrap.js';
 import './js/menu.js';
 import './js/dropdown-hover.js';
 import './js/mega-dropdown.js';
 import './js/helpers.js';
+import './config.js';
+import './main.js';
 
-// JS Libraries (if needed)
-import Waves from 'node-waves';
-import PerfectScrollbar from 'perfect-scrollbar';
-
-// Example init (if used in your template)
 Waves.init();
