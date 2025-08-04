@@ -8,5 +8,5 @@ Route::get('/', function () {
 });
 
 
-Route::get('/invoices/{invoice}', [InvoiceController::class, 'show'])
-    ->name('invoices.show');
+Route::get('/invoices', [InvoiceController::class, 'index'])->name('invoices.index');
+Route::get('/invoices/{invoice}', [InvoiceController::class, 'show'])->name('invoices.show');
