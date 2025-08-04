@@ -47,6 +47,11 @@ class User extends Authenticatable
         ];
     }
 
+    public function getRouteKeyName()
+    {
+        return 'uuid';
+    }
+
     protected static function boot()
     {
         parent::boot();

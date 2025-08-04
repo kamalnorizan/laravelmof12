@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Invoice;
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -44,6 +45,7 @@ class InvoiceDetailFactory extends Factory
         $selectedProduct = $product[array_rand($product)];
 
         return [
+            'id'=> Str::ulid()->toString(),
             'invoice_id' => $invoice->id,
             'product_name' => $selectedProduct['product_name'],
             'quantity' => $this->faker->numberBetween(1, 10),
