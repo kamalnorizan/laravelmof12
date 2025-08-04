@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
+use Ramsey\Uuid\Uuid;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +19,11 @@ class InvoiceFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'id'=>Uuid::uuid4(),
+            'customer_name'=>$this->faker->name(),
+            'customer_email'=>$this->faker->unique()->safeEmail(),
+            'status'=>$this->faker->randomElement([0, 1, 2]),
+            'user_id'=>rand(1, User::count()),
         ];
     }
 }
