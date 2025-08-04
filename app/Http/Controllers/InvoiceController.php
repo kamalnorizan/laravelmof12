@@ -12,8 +12,10 @@ class InvoiceController extends Controller
         // $invoices = Invoice::latest()->get();
         // return response()->json($invoices);
 
-        $user = User::orderBy('id', 'desc')->get();
-        return response()->json($user);
+        // $user = User::orderBy('id', 'desc')->get();
+        // return response()->json($user);
+
+        return view('invoices.index'); // Assuming you have a view for listing invoices
     }
 
     public function show(Invoice $invoice) {
