@@ -24,13 +24,20 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>ID</th>
                         <th>Date</th>
                         <th>Customer</th>
                         <th>Amount</th>
                         <th>Status</th>
                     </tr>
                 </thead>
+                @foreach ($invoices as $item)
+                    <tr>
+                        <td>{{ \Carbon\Carbon::parse($item->created_at)->format('d-m-Y') }}</td>
+                        <td>{{ $item->customer_name }}</td>
+                        <td>{{ $item->amount }}</td>
+                        <td>{{ $item->status }}</td>
+                    </tr>
+                @endforeach
                 <tbody>
 
                 </tbody>
