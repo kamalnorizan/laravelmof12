@@ -54,7 +54,7 @@
                 <input type="hidden" name="token" value="{{ $request->route('token') }}">
                 <div class="form-floating form-floating-outline mb-5">
                     <input type="text" class="form-control" id="email" name="email"
-                        placeholder="Enter your email" value="{{ old('email') }}" autofocus />
+                        placeholder="Enter your email" value="{{ old('email', $request->email) }}" autofocus />
                     <label for="email">Email</label>
                     <small class="text-danger">{{ $errors->first('email') }}</small>
                 </div>
