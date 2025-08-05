@@ -166,7 +166,7 @@
                                         <div class="dropdown-divider my-1"></div>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="javascript:void(0);">
+                                        <a class="dropdown-item logout-button" href="#">
                                             <i class="ri-shut-down-line me-2"></i>
                                             <span class="align-middle">Log Out</span>
                                         </a>
@@ -226,6 +226,9 @@
         <!-- Drag Target Area To SlideIn Menu On Small Screens -->
         <div class="drag-target"></div>
     </div>
+    <form action="{{ route('logout') }}" method="POST" id="logout-form" style="display: none;">
+        @csrf
+    </form>
     @stack('scripts')
 </body>
 

@@ -17,13 +17,11 @@ import './js/dropdown-hover.js';
 import './js/mega-dropdown.js';
 import './js/helpers.js';
 import './config.js';
+import '../scss/libs/@form-validation/popular.js';
+import '../scss/libs/@form-validation/auto-focus.js';
+import '../scss/libs/@form-validation/bootstrap5.js';
+
+import './pages-auth.js';
 
 import './main.js';
 Waves.init();
-
-$(document).ready(function () {
-    $('.logout-button').on('click', function (e) {
-        e.preventDefault();
-        $('#logout-form').submit();
-    });
-});
