@@ -17,6 +17,7 @@ import './js/dropdown-hover.js';
 import './js/mega-dropdown.js';
 import './js/helpers.js';
 import './config.js';
-import './main.js';
 
+import './main.js';
 Waves.init();
+

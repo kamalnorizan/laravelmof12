@@ -24,6 +24,7 @@
         "remixicon": "^4.6.0",
         "sass": "^1.89.2",
         "sass-loader": "^16.0.5",
+        "select2": "^4.1.0-rc.0",
         "sweetalert2": "^11.22.2"
     }
 }
