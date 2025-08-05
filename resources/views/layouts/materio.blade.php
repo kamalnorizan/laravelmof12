@@ -9,10 +9,10 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>Page 1 - Starter Kit | Materio - Bootstrap Material Design Admin Template</title>
+    <title>@yield('title', 'Materio - Bootstrap Material Design Admin Template')</title>
 
     <meta name="description" content="" />
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon/favicon.ico') }}" />
 
@@ -24,6 +24,11 @@
 
     @vite(['resources/scss/app.scss', 'resources/js/app.js'])
 
+    <style>
+        .swal2-container {
+            z-index: 20000 !important;
+        }
+    </style>
 
 </head>
 
@@ -91,6 +96,12 @@
                         <a href="{{ route('invoices.index') }}" class="menu-link">
                             <i class="menu-icon tf-icons ri-file-3-line"></i>
                             <div data-i18n="invoices">Invoices</div>
+                        </a>
+                    </li>
+                    <li class="menu-item  {{ request()->is('users') ? 'active' : '' }}">
+                        <a href="{{ route('users.index') }}" class="menu-link">
+                            <i class="menu-icon tf-icons ri-user-line"></i>
+                            <div data-i18n="users">Users</div>
                         </a>
                     </li>
                 </ul>

@@ -4,8 +4,13 @@ import laravel from 'laravel-vite-plugin';
 export default defineConfig({
     plugins: [
         laravel({
-            input: ['resources/scss/app.scss', 'resources/js/app.js', 'resources/scss/guest.scss', 'resources/js/guest.js'],
+            input: ['resources/scss/app.scss', 'resources/js/app.js', 'resources/scss/guest.scss', 'resources/js/guest.js','resources/js/users.js'],
             refresh: true,
         }),
     ],
+    resolve : {
+        alias: {
+            '$':'jQuery',
+        }
+    },
 });

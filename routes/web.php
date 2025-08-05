@@ -14,6 +14,11 @@ Route::get('/invoices/create', [InvoiceController::class, 'create'])->name('invo
 Route::post('/invoices', [InvoiceController::class, 'store'])->name('invoices.store');
 Route::get('/invoices/{invoice}', [InvoiceController::class, 'show'])->name('invoices.show');
 
+Route::get('/users', [UserController::class, 'index'])->name('users.index');
+Route::post('/users/ajaxloadusers', [UserController::class, 'ajaxLoadUsers'])->name('users.ajaxloadusers');
+Route::post('/users', [UserController::class, 'store'])->name('users.store');
+Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
+Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
 Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
 
 
