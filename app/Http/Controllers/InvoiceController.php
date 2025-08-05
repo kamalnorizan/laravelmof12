@@ -8,17 +8,19 @@ use App\Models\Invoice;
 
 use Illuminate\Http\Request;
 use App\Services\InvoiceService;
+use App\Http\Requests\StoreInvoiceRequest;
 
 class InvoiceController extends Controller
 {
-    public function index() {
+    public function index(InvoiceService $invoiceService) {
         // $invoices = Invoice::latest()->get();
         // return response()->json($invoices);
 
         // $user = User::orderBy('id', 'desc')->get();
         // return response()->json($user);
 
-        $invoices = (new InvoiceService())->unpaidInvoices();
+        $unpaidInvoices = $invoiceService->unpaidInvoices();
+        $invoices = $invoiceService->getAllInvoices();
 
         return view('invoices.index', compact('invoices')); // Assuming you have a view for listing invoices
     }
@@ -28,21 +30,10 @@ class InvoiceController extends Controller
 
     }
 
-    public function store(Request $request) {
-        $request->validate([
-            'customer_name' => 'required|string|max:255',
-            'customer_email' => 'required|email|max:255',
-            'status' => 'required|in:unpaid,paid',
-        ]);
+    public function store(StoreInvoiceRequest $request, InvoiceService $invoiceService) {
 
-        $invoice = new Invoice();
-        $invoice->id = Uuid::uuid4();
-        $invoice->customer_name = $request->input('customer_name');
-        $invoice->customer_email = $request->input('customer_email');
-        $invoice->status = $request->input('status') === 'paid' ? 1 : 0; // Convert to integer status
-        $invoice->user_id = 1;
-        $invoice->save(); // Save the invoice to the database
-
+        $invoice = $invoiceService->createInvoice($request->all());
+        $invNum = $invoiceService->generateInvoiceNumber();
         return redirect()->route('invoices.show', $invoice);
     }
 
@@ -52,4 +43,6 @@ class InvoiceController extends Controller
         }
         return response()->json($invoice);
     }
+
+
 }
