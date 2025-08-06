@@ -21,6 +21,7 @@ Route::post('/users/ajaxloadusers', [UserController::class, 'ajaxloadusers'])->n
 Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update')->middleware(['auth','permission:edit users']);
 Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit')->middleware(['auth','permission:edit users']);
 Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show')->middleware(['auth','permission:view users']);
+Route::get('/users/approve/{user}', [UserController::class, 'approveUser'])->name('users.approve')->middleware(['auth','permission:edit users']);
 
 
 Route::get('/dashboard', function () {

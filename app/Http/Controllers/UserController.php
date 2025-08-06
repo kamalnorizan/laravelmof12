@@ -42,7 +42,12 @@ class UserController extends Controller
                 $buttons = '';
 
                 if (Auth::user()->can('edit users')) {
-                    $buttons .= '<button class="btn btn-sm btn-primary edit" data-id="' . $user->uuid . '">Edit</button>';
+                    if ($user->approved == 0) {
+                        $buttons .= '<a class="btn btn-sm btn-success" href="'.route('users.approve', $user->uuid).'">Approve</a>';
+                    }else {
+                        $buttons .= '<a class="btn btn-sm btn-warning" href="'.route('users.approve', $user->uuid).'">Disapprove</a>';
+                    }
+                    $buttons .= ' <button class="btn btn-sm btn-primary edit" data-id="' . $user->uuid . '">Edit</button>';
                 }
 
                 if (Auth::user()->can('delete users')) {
@@ -99,5 +104,17 @@ class UserController extends Controller
         return response()->json([
             'user' => $user
         ]);
+    }
+
+    public function approveUser(User $user)
+    {
+        if($user->approved == 0) {
+            $user->approved = 1;
+        } else {
+            $user->approved = 0;
+        }
+        $user->save();
+
+        return redirect()->back();
     }
 }
