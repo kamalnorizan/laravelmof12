@@ -51,6 +51,7 @@ const userTable = new DataTable('#userTbl', {
 
 $(document).on("click", ".edit", function (e) {
     e.preventDefault();
+    $('#saveUserBtn').text('Update User');
     $('.offcanvas-title').text('Edit User');
     var userId = $(this).data("id");
     $('#userForm')[0].reset();
@@ -95,24 +96,27 @@ $(document).on("click", "#saveUserBtn", function (e) {
             userTable.ajax.reload();
             $('#userForm')[0].reset();
             $('#method').val('POST');
-
             $('#userForm').attr('action', '/users');
-            $('.is-invalid').removeClass('is-invalid');
-            $('.text-danger').text('');
             offcanvas.hide();
-            if( $('#id').val()== '' ){
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Success',
-                    text: 'User created successfully!'
-                });
-            } else {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Success',
-                    text: 'User updated successfully!'
-                });
-            }
+            // if( $('#id').val()== '' ){
+            //     Swal.fire({
+            //         icon: 'success',
+            //         title: 'Success',
+            //         text: 'User created successfully!'
+            //     });
+            // } else {
+            //     Swal.fire({
+            //         icon: 'success',
+            //         title: 'Success',
+            //         text: 'User updated successfully!'
+            //     });
+            // }
+
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: $('#id').val() == '' ? 'User created successfully!' : 'User updated successfully!'
+            });
             $('#id').val('');
         },
         error: function (error) {
@@ -132,5 +136,6 @@ $(document).on("click", "#createNewUserBtn", function (e) {
     $('.offcanvas-title').text('Create User');
     $('#userForm').attr('action', '/users');
     $('#userForm')[0].reset();
+    $('#saveUserBtn').text('Create User');
     offcanvas.show();
 });
