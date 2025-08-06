@@ -32,7 +32,7 @@ new DataTable('#userTbl', {
         { data: 'id', name: 'id' },
         { data: 'name', name: 'name' },
         { data: 'email', name: 'email' },
-        { data: 'created_at', name: 'created_at' },
+        { data: 'rolepermissions' },
         { data: 'action', name: 'action', orderable: false, searchable: false }
     ],
     order: [[0, 'desc']],

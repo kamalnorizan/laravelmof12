@@ -98,7 +98,7 @@
                     @can('view users')
                     <li class="menu-item  {{ request()->is('users') ? 'active' : '' }}">
                         <a href="{{ route('users.index') }}" class="menu-link">
-                            <i class="menu-icon tf-icons ri-file-3-line"></i>
+                            <i class="menu-icon tf-icons ri-user-line"></i>
                             <div data-i18n="users">Users</div>
                         </a>
                     </li>
