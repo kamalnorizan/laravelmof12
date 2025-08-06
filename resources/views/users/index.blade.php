@@ -41,7 +41,7 @@
             <div class="card-header flex-column flex-md-row">
                 <div class="head-label">
                     <h5 class="card-title mb-0">Users List
-                        @can('create user')
+                        @can('create users')
                             <button class="btn btn-secondary create-new btn-primary waves-effect waves-light float-end"
                                 tabindex="0" aria-controls="DataTables_Table_0" id="createNewUserBtn" type="button"><span><i class="ri-add-line"></i>
                                     <span class="d-none d-sm-inline-block">Add New User</span></span></button>

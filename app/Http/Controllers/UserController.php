@@ -53,10 +53,10 @@ class UserController extends Controller
             })
             ->addColumn('action', function ($row) {
                 $buttons = '';
-                if (auth()->user()->can('edit user')) {
+                if (auth()->user()->can('edit users')) {
                     $buttons .= '<button class="btn btn-sm btn-primary waves-effect edit" data-id="' . $row->uuid . '">Edit</button>';
                 }
-                if (auth()->user()->can('delete user')) {
+                if (auth()->user()->can('delete users')) {
                     $buttons .= ' <button class="btn btn-sm btn-danger waves-effect delete" data-id="' . $row->uuid . '">Delete</button>';
                 }
                 return $buttons;
