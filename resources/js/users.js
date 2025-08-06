@@ -10,6 +10,7 @@ import Select from 'datatables.net-select-bs5';
 
 import 'datatables.net-bs5/css/dataTables.bootstrap5.min.css';
 import 'datatables.net-select-bs5/css/select.bootstrap5.min.css';
+import Swal from 'sweetalert2';
 
 DataTable.use(Select);
 DataTable.use(Buttons);
@@ -98,6 +99,12 @@ $(document).on("click", "#saveUserBtn", function (e) {
             $('.is-invalid').removeClass('is-invalid');
             $('.text-danger').text('');
             offcanvas.hide();
+
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: 'User updated successfully!'
+            });
         },
         error: function (error) {
             const errors = error.responseJSON.errors;

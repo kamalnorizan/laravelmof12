@@ -24,6 +24,11 @@
 
     @vite(['resources/scss/app.scss', 'resources/js/app.js'])
 
+    <style>
+        .swal2-container{
+            z-index: 20000 !important;
+        }
+    </style>
     @yield('head')
 </head>
 
