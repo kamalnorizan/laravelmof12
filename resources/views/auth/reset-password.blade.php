@@ -1,9 +1,9 @@
 @extends('layouts.guest')
 
-@section('title','Reset Password - Pages | Materio - Bootstrap Material Design Admin Template')
+@section('title', 'Reset Password - Pages | Materio - Bootstrap Material Design Admin Template')
 
 @section('content')
-<div class="card p-7">
+    <div class="card p-7">
         <!-- Logo -->
         <div class="app-brand justify-content-center mt-5">
             <a href="index.html" class="app-brand-link gap-3">
@@ -53,8 +53,8 @@
                 @csrf
                 <input type="hidden" name="token" value="{{ $request->route('token') }}">
                 <div class="form-floating form-floating-outline mb-5">
-                    <input type="text" class="form-control" id="email" name="email"
-                        placeholder="Enter your email" value="{{ old('email', $request->email) }}" autofocus />
+                    <input type="text" class="form-control" id="email" name="email" placeholder="Enter your email"
+                        value="{{ old('email', $request->email) }}" autofocus />
                     <label for="email">Email</label>
                     <small class="text-danger">{{ $errors->first('email') }}</small>
                 </div>
@@ -69,13 +69,15 @@
                             </div>
                             <span class="input-group-text cursor-pointer"><i class="ri-eye-off-line ri-20px"></i></span>
                         </div>
+                        <small class="text-danger">{{ $errors->first('password') }}</small>
                     </div>
                 </div>
                 <div class="mb-5">
                     <div class="form-password-toggle">
                         <div class="input-group input-group-merge">
                             <div class="form-floating form-floating-outline">
-                                <input type="password" id="password_confirmation" class="form-control" name="password_confirmation"
+                                <input type="password" id="password_confirmation" class="form-control"
+                                    name="password_confirmation"
                                     placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
                                     aria-describedby="password" />
                                 <label for="password_confirmation">Reconfirm Password</label>
