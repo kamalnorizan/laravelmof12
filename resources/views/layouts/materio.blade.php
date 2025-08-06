@@ -8,8 +8,8 @@
     <meta charset="utf-8" />
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
-
-    <title>Page 1 - Starter Kit | Materio - Bootstrap Material Design Admin Template</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+    <title>@yield('title', 'Materio - Bootstrap Material Design Admin Template')</title>
 
     <meta name="description" content="" />
 
@@ -24,7 +24,7 @@
 
     @vite(['resources/scss/app.scss', 'resources/js/app.js'])
 
-
+    @yield('head')
 </head>
 
 <body>

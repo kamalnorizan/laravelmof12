@@ -14,6 +14,9 @@ Route::get('/invoices/create', [InvoiceController::class, 'create'])->name('invo
 Route::post('/invoices', [InvoiceController::class, 'store'])->name('invoices.store');
 Route::get('/invoices/{invoice}', [InvoiceController::class, 'show'])->name('invoices.show');
 
+
+Route::get('/users', [UserController::class, 'index'])->name('users.index');
+Route::post('/users/ajaxloadusers', [UserController::class, 'ajaxloadusers'])->name('users.ajaxloadusers');
 Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
 
 
@@ -26,5 +29,6 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
 
 require __DIR__.'/auth.php';
