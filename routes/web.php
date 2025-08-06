@@ -15,9 +15,11 @@ Route::post('/invoices', [InvoiceController::class, 'store'])->name('invoices.st
 Route::get('/invoices/{invoice}', [InvoiceController::class, 'show'])->name('invoices.show');
 
 
-Route::get('/users', [UserController::class, 'index'])->name('users.index');
-Route::post('/users/ajaxloadusers', [UserController::class, 'ajaxloadusers'])->name('users.ajaxloadusers');
-Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
+Route::get('/users', [UserController::class, 'index'])->name('users.index')->middleware(['auth','permission:view users']);
+Route::post('/users/ajaxloadusers', [UserController::class, 'ajaxloadusers'])->name('users.ajaxloadusers')->middleware(['auth','permission:view users']);
+Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update')->middleware(['auth','permission:edit users']);
+Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit')->middleware(['auth','permission:edit users']);
+Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show')->middleware(['auth','permission:view users']);
 
 
 Route::get('/dashboard', function () {
