@@ -49,9 +49,8 @@
             <h4 class="mb-1">Reset Password 🚀</h4>
             <p class="mb-5">Insert your new password below.</p>
 
-            <form id="formAuthentication" class="mb-5" action="{{ route('password.update') }}" method="post">
+            <form id="formAuthentication" class="mb-5" action="{{ route('password.store') }}" method="post">
                 @csrf
-                @method('PUT')
                 <input type="hidden" name="token" value="{{ $request->route('token') }}">
                 <div class="form-floating form-floating-outline mb-5">
                     <input type="text" class="form-control" id="email" name="email"
