@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\UserStoreRequest;
 use App\Http\Requests\UserUpdateRequest;
 use Spatie\Permission\Models\Permission;
+use App\Notifications\UserRegisteredNotification;
 
 class UserController extends Controller
 {
@@ -92,6 +93,8 @@ class UserController extends Controller
 
         $user->syncRoles($request->roles);
         $user->syncPermissions($request->permissions);
+
+        $user->notify(new UserRegisteredNotification($user, $password));
 
         return response()->json([
             'user' => $user
