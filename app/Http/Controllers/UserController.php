@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Str;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\UserStoreRequest;
 use App\Http\Requests\UserUpdateRequest;
 use Spatie\Permission\Models\Permission;
 
@@ -71,6 +73,23 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->save();
+        $user->syncRoles($request->roles);
+        $user->syncPermissions($request->permissions);
+
+        return response()->json([
+            'user' => $user
+        ]);
+    }
+
+    public function store(UserStoreRequest $request)
+    {
+        $password = Str::random(8);
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($password),
+        ]);
+
         $user->syncRoles($request->roles);
         $user->syncPermissions($request->permissions);
 

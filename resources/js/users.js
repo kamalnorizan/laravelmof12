@@ -51,6 +51,7 @@ const userTable = new DataTable('#userTbl', {
 
 $(document).on("click", ".edit", function (e) {
     e.preventDefault();
+    $('.offcanvas-title').text('Edit User');
     var userId = $(this).data("id");
     $('#userForm')[0].reset();
     $.ajax({
@@ -94,17 +95,25 @@ $(document).on("click", "#saveUserBtn", function (e) {
             userTable.ajax.reload();
             $('#userForm')[0].reset();
             $('#method').val('POST');
-            $('#id').val('');
+
             $('#userForm').attr('action', '/users');
             $('.is-invalid').removeClass('is-invalid');
             $('.text-danger').text('');
             offcanvas.hide();
-
-            Swal.fire({
-                icon: 'success',
-                title: 'Success',
-                text: 'User updated successfully!'
-            });
+            if( $('#id').val()== '' ){
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: 'User created successfully!'
+                });
+            } else {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: 'User updated successfully!'
+                });
+            }
+            $('#id').val('');
         },
         error: function (error) {
             const errors = error.responseJSON.errors;
@@ -116,4 +125,12 @@ $(document).on("click", "#saveUserBtn", function (e) {
             });
         }
     });
+});
+
+$(document).on("click", "#createNewUserBtn", function (e) {
+    e.preventDefault();
+    $('.offcanvas-title').text('Create User');
+    $('#userForm').attr('action', '/users');
+    $('#userForm')[0].reset();
+    offcanvas.show();
 });

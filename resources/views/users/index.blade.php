@@ -10,7 +10,18 @@
     <h1>Users Management</h1>
 
     <div class="card">
-
+        <div class="card-header flex-column flex-md-row">
+            <div class="head-label">
+                <h5 class="card-title mb-0">Users List
+                    @can('create users')
+                        <button class="btn btn-secondary create-new btn-primary waves-effect waves-light float-end" tabindex="0"
+                            aria-controls="DataTables_Table_0" id="createNewUserBtn" type="button"><span><i
+                                    class="ri-add-line"></i>
+                                <span class="d-none d-sm-inline-block">Add New User</span></span></button>
+                    @endcan
+                </h5>
+            </div>
+        </div>
         <div class="card-body">
             <table class="table" id="userTbl">
                 <thead>
@@ -44,7 +55,8 @@
 
                 <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
                     <label for="name">Name</label>
-                    <input type="text" id="name" name="name" value="{{ old('name') }}"  class="form-control" required="required" placeholder="Enter name">
+                    <input type="text" id="name" name="name" value="{{ old('name') }}" class="form-control"
+                        required="required" placeholder="Enter name">
                     <small class="text-danger">{{ $errors->first('name') }}</small>
                 </div>
 
