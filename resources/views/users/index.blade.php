@@ -98,5 +98,5 @@
 @endsection
 
 @push('scripts')
-    @vite(['resources/js/users.js'])
+    @vite(['resources/js/globaldatatable.js', 'resources/js/users.js'])
 @endpush
