@@ -16,6 +16,7 @@ Route::get('/invoices/{invoice}', [InvoiceController::class, 'show'])->name('inv
 
 
 Route::get('/users', [UserController::class, 'index'])->name('users.index')->middleware(['auth','permission:view users']);
+Route::get('/users/print', [UserController::class, 'print'])->name('users.print')->middleware(['auth','permission:view users']);
 Route::post('/users', [UserController::class, 'store'])->name('users.store')->middleware(['auth','permission:create users']);
 Route::post('/users/ajaxloadusers', [UserController::class, 'ajaxloadusers'])->name('users.ajaxloadusers')->middleware(['auth','permission:view users']);
 Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update')->middleware(['auth','permission:edit users']);

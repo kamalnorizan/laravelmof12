@@ -22,6 +22,12 @@ class UserController extends Controller
         return view('users.index', compact('roles', 'permissions'));
     }
 
+    public function print()
+    {
+        $users = User::with(['roles', 'permissions'])->get();
+        return view('users.print', compact('users'));
+    }
+
     public function ajaxloadusers(Request $request)
     {
         $users = User::query();

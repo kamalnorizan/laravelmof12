@@ -56,7 +56,7 @@ const userTable = new DataTable('#userTbl', {
             text: '<i class="bi bi-printer"></i> Print',
             className: 'btn btn-primary',
             action: function (e, dt, node, config) {
-               var location = '/invoices?' + $.param(dt.ajax.params());
+               var location = '/users/print?' + $.param(dt.ajax.params());
                window.open(location, '_blank');
             }
         }
