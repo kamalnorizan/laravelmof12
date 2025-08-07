@@ -1,6 +1,6 @@
 import JSZip from 'jszip';
 import pdfMake from 'pdfmake';
-import pdfFonts from 'pdfmake/build/vfs_fonts';
+import * as pdfFonts from 'pdfmake/build/vfs_fonts';
 import DataTable from 'datatables.net-bs5';
 import Buttons from 'datatables.net-buttons-bs5';
 import FixedColumns from 'datatables.net-fixedcolumns-bs5';
