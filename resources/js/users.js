@@ -12,7 +12,55 @@ $.ajaxSetup({
 const userTable = new DataTable('#userTbl', {
     processing: true,
     serverSide: true,
-    dom: 'Bfrtip',
+    dom: 'lBfrtip',
+    buttons: [
+        {
+            extend: 'copyHtml5',
+            text: '<i class="bi bi-clipboard"></i> Copy',
+            className: 'btn btn-secondary'
+        },
+        {
+            extend: 'excelHtml5',
+            text: '<i class="bi bi-file-earmark-excel"></i> Excel',
+            className: 'btn btn-success',
+            action: function (e, dt, node, config) {
+                var self = this;
+                let oldStart = dt.settings()[0]._iDisplayStart;
+                dt.one('preXhr', function (e, s, data) {
+                    data.start = 0;
+                    data.length = 2147483647;
+                    dt.one('preDraw', function (e, settings, data) {
+                        $.fn.dataTable.ext.buttons.excelHtml5.action.call(self, e, dt, node, config);
+                        dt.ajax.reload();
+                        dt.one('preXhr', function (e, s, data) {
+                            data.start = oldStart;
+                            data.length = dt.settings()[0]._iDisplayLength;
+                        });
+                    });
+                });
+                dt.ajax.reload();
+            },
+        },
+        {
+            extend: 'csvHtml5',
+            text: '<i class="bi bi-file-earmark-csv"></i> CSV',
+            className: 'btn btn-info'
+        },
+        {
+            extend: 'pdfHtml5',
+            text: '<i class="bi bi-file-earmark-pdf"></i> PDF',
+            className: 'btn btn-danger'
+        },
+        {
+            extend: 'print',
+            text: '<i class="bi bi-printer"></i> Print',
+            className: 'btn btn-primary',
+            action: function (e, dt, node, config) {
+               var location = '/invoices?' + $.param(dt.ajax.params());
+               window.open(location, '_blank');
+            }
+        }
+    ],
     ajax: {
         url: '/users/ajaxloadusers',
         type: 'POST',
