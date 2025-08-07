@@ -28,6 +28,7 @@
                         <th>Customer</th>
                         <th>Amount</th>
                         <th>Status</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 @foreach ($invoices as $item)
@@ -36,6 +37,9 @@
                         <td>{{ $item->customer_name }}</td>
                         <td>{{ $item->amount }}</td>
                         <td>{{ $item->status }}</td>
+                        <td>
+                            <button data-id="{{ $item->id }}" class="btn btn-success btn-sm pay">View</button>
+                        </td>
                     </tr>
                 @endforeach
                 <tbody>

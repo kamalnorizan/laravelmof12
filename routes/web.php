@@ -13,6 +13,9 @@ Route::get('/invoices', [InvoiceController::class, 'index'])->name('invoices.ind
 Route::get('/invoices/create', [InvoiceController::class, 'create'])->name('invoices.create');
 Route::post('/invoices', [InvoiceController::class, 'store'])->name('invoices.store');
 Route::get('/invoices/{invoice}', [InvoiceController::class, 'show'])->name('invoices.show');
+Route::post('/invoices/{invoice}', [InvoiceController::class, 'payinvoice'])->name('invoices.payinvoice');
+Route::get('/invoices/{invoice}/redirect', [InvoiceController::class, 'redirect'])->name('invoice.redirect');
+Route::get('/invoices/{invoice}/callback', [InvoiceController::class, 'callback'])->name('invoice.callback');
 
 
 Route::get('/users', [UserController::class, 'index'])->name('users.index')->middleware(['auth','permission:view users']);
