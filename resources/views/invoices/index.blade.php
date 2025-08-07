@@ -38,7 +38,13 @@
                         <td>{{ $item->amount }}</td>
                         <td>{{ $item->status }}</td>
                         <td>
-                            <button data-id="{{ $item->id }}" class="btn btn-success btn-sm pay">View</button>
+                            @php
+                            $total = 0;
+                            foreach($item->invoice_details as $detail) {
+                                $total += $detail->price * $detail->quantity;
+                            }
+                            @endphp
+                            <button data-total="{{ $total }}" data-id="{{ $item->id }}" class="btn btn-success btn-sm pay">View</button>
                         </td>
                     </tr>
                 @endforeach

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Ramsey\Uuid\Uuid;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Invoice extends Model
@@ -22,5 +23,11 @@ class Invoice extends Model
         static::creating(function ($model) {
             $model->id = (string) Uuid::uuid4();
         });
+    }
+
+
+    public function invoice_details(): HasMany
+    {
+        return $this->hasMany(InvoiceDetail::class, 'invoice_id', 'id');
     }
 }

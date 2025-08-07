@@ -51,6 +51,10 @@ class InvoiceController extends Controller
 
     public function payinvoice(Invoice $invoice)
     {
+        $total = 0;
+        foreach($invoice->invoice_details as $detail) {
+            $total += $detail->price * $detail->quantity;
+        }
         $dataApi = array(
             'userSecretKey' => env('TOYYIBPAY_API_KEY'),
             'categoryCode' => env('TOYYIBPAY_KODLARAVEL'),
@@ -58,7 +62,7 @@ class InvoiceController extends Controller
             'billDescription' => 'Pembayaran Bil Laravel MOF',
             'billPriceSetting' => 1,
             'billPayorInfo' => 1,
-            'billAmount' => 1500 * 100,
+            'billAmount' => $total * 100,
             'billReturnUrl' => route('invoice.redirect', ['invoice' => $invoice->id]),
             'billCallbackUrl' => route('invoice.callback', ['invoice' => $invoice->id]),
             'billExternalReferenceNo' => $invoice->id,

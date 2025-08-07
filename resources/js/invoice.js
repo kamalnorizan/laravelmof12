@@ -6,6 +6,7 @@ $(document).on("click",".pay",function (e) {
         type: "POST",
         data: {
             _token: $('meta[name="csrf-token"]').attr('content'),
+            total: $(this).data("total"), // Convert to cents
         },
         success: function (response) {
             if(response.success){
