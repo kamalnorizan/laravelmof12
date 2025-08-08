@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\QueueTutorialController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -26,6 +27,7 @@ Route::put('/users/{user}', [UserController::class, 'update'])->name('users.upda
 Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit')->middleware(['auth','permission:edit users']);
 Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show')->middleware(['auth','permission:view users']);
 
+Route::get('/testmail', [QueueTutorialController::class, 'testmail'])->name('tutorial.testmail');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

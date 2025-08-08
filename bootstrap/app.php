@@ -1,6 +1,10 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Foundation\Application;
+use Illuminate\Console\Scheduling\Schedule;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\QueueFailedNotification;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 
@@ -20,4 +24,9 @@ return Application::configure(basePath: dirname(__DIR__))
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
-    })->create();
+    })
+    ->withSchedule(function (Schedule $schedule): void {
+        $schedule->command('app:check-failed-jobs')
+            ->everyMinute();
+    })
+    ->create();
