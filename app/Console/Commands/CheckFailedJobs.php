@@ -33,8 +33,9 @@ class CheckFailedJobs extends Command
 
         // Placeholder for actual logic
         $failedJobs = \DB::table('failed_jobs')->get();
+        $stuckedQueue = \DB::table('jobs')->where('attempts', '>', 3)->get();
 
-        if (!$failedJobs->isEmpty()) {
+        if (!$failedJobs->isEmpty() || !$stuckedQueue->count() > 0) {
             User::first()->notify(new QueueFailedNotification());
         }
 
